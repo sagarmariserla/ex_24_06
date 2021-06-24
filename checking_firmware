@@ -1,0 +1,18 @@
+#!/bin/bash
+
+STATE=`cat $(pwd)/status_firmware.txt`
+#echo $STATE
+
+        if [ `echo $STATE | grep -c "firmware_update_initiating" ` -gt 0 ]
+        then
+                sudo bash software_update.sh
+		#echo $STATE
+        fi
+
+	if [ `echo $STATE | grep -c "success" ` -gt 0 ]
+        then
+		sudo service checking_firmware stop
+                #echo $STATE
+        fi
+
+
